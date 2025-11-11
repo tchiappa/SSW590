@@ -1,0 +1,40 @@
+# DEVELOPMENT DOCKER COMPOSE
+services:
+  mongo:
+    container_name: "database"
+    image: mongo:8.2
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo:/data/db
+
+  backend:
+    container_name: "backend"
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/mydb
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    depends_on:
+      - mongo
+
+  frontend:
+    container_name: "frontend"
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+
+volumes:
+  mongo:
