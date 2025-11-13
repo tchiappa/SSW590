@@ -10,6 +10,7 @@
     "cookie-parser": "~1.4.4",
     "debug": "^4.4.3",
     "express": "~4.16.1",
+    "mongodb": "^7.0.0",
     "morgan": "~1.9.1"
   }
 }
