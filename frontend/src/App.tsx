@@ -1,9 +1,16 @@
-function App() {
-  return (
-    <>
-      <h1>SSW590 - Group Project</h1>
-    </>
-  )
-}
+import {Navbar, NavbarItem, NavbarSection} from './components/navbar'
+import { Sidebar } from './components/sidebar'
+import { StackedLayout } from './components/stacked-layout'
 
-export default App
+export default function App({ children }:{ children: any; }) {
+    return (
+        <StackedLayout
+            navbar={<Navbar><NavbarSection>
+                <NavbarItem href="/">Home</NavbarItem>
+            </NavbarSection></Navbar>}
+            sidebar={<Sidebar></Sidebar>}
+        >
+            {children}
+        </StackedLayout>
+    )
+}
