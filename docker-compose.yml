@@ -36,5 +36,15 @@ services:
     depends_on:
       - backend
 
+  reporting:
+    container_name: reporting
+    image: grafana/grafana
+    restart: unless-stopped
+    ports:
+      - '4000:3000'
+    volumes:
+      - grafana:/var/lib/grafana
+
 volumes:
   mongo:
+  grafana:
