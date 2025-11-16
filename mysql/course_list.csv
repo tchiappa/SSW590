@@ -1,0 +1,60 @@
+Course Code,Course Title,Degree,Concentration,Requirement Type,Certificate,Credits
+EM 624,Data Exploration and Informatics for Engineering Management,M.Eng. Systems Analytics,-,Core,Healthcare Systems and Data Analytics Certificate,3
+EM 624,Data Exploration and Informatics for Engineering Management,M.Eng. Systems Analytics,-,Core,Data Exploration & Visualization for Risk & Decision-Making,3
+EM 622,Decision Making via Data Analysis Techniques,M.Eng. Systems Analytics,-,Core,Data Exploration & Visualization for Risk & Decision-Making,3
+SYS 660,Decision and Risk Analysis,M.Eng. Systems Analytics,-,Core,Data Exploration & Visualization for Risk & Decision-Making,3
+EM 623,Data Science and Knowledge Discovery / Applied AI & ML for Systems and Enterprises,M.Eng. Systems Analytics,-,Core Choice,,3
+EM 626,Data Science and Knowledge Discovery / Applied AI & ML for Systems and Enterprises,M.Eng. Systems Analytics,-,Core Choice,,3
+EM 633,Decision Sciences in Healthcare / Forecasting & Demand Modeling Systems,M.Eng. Systems Analytics,-,Core Choice,Healthcare Systems and Data Analytics Certificate,3
+SYS 670,Decision Sciences in Healthcare / Forecasting & Demand Modeling Systems,M.Eng. Systems Analytics,-,Core Choice,,3
+SYS 682,Multi-Agent Socio-Technical Systems / Systems Modeling & Simulation,M.Eng. Systems Analytics,-,Core Choice,,3
+SYS 611,Multi-Agent Socio-Technical Systems / Systems Modeling & Simulation,M.Eng. Systems Analytics,-,Core Choice,,3
+EM 600,Engineering Economics and Cost Analysis,M.Eng. Engineering Management,-,Core,,3
+EM 605,Elements of Operations Research,M.Eng. Engineering Management,-,Core,,3
+EM 624,Data Exploration and Informatics for Engineering Management,M.Eng. Engineering Management,-,Core,Healthcare Systems and Data Analytics Certificate,3
+EM 624,Data Exploration and Informatics for Engineering Management,M.Eng. Engineering Management,-,Core,Data Exploration & Visualization for Risk & Decision-Making,3
+SYS 660,Decision and Risk Analysis,M.Eng. Engineering Management,-,Core,Data Exploration & Visualization for Risk & Decision-Making,3
+EM 612,Project Mgmt of Complex Systems / Designing & Managing the Development Enterprise,M.Eng. Engineering Management,-,Core Choice,,3
+EM 680,Project Mgmt of Complex Systems / Designing & Managing the Development Enterprise,M.Eng. Engineering Management,-,Core Choice,,3
+SYS 611,Systems Modeling & Simulation / Dynamic Modeling of Systems & Enterprise,M.Eng. Engineering Management,-,Core Choice,,3
+SYS 681,Systems Modeling & Simulation / Dynamic Modeling of Systems & Enterprise,M.Eng. Engineering Management,-,Core Choice,,3
+SSW 540,Fundamentals of Software Engineering,M.S. Software Engineering,-,Core,Software Engineering Certificate,3
+SSW 555,Agile Methods for Software Development,M.S. Software Engineering,-,Core,,3
+SSW 564,Software Requirements Analysis and Engineering,M.S. Software Engineering,-,Core,,3
+SSW 565,Software Architecture and Component-Based Design,M.S. Software Engineering,-,Core,,3
+SSW 567,"Software Testing, QA, and Maintenance",M.S. Software Engineering,-,Core,,3
+SSW 695,Software Engineering Capstone Studio,M.S. Software Engineering,-,Core,,3
+SYS 611,Systems Modeling & Simulation / Decision and Risk Analysis,M.Eng. Space Systems Engineering,-,Core Choice,,3
+SYS 660,Systems Modeling & Simulation / Decision and Risk Analysis,M.Eng. Space Systems Engineering,-,Core Choice,Data Exploration & Visualization for Risk & Decision-Making,3
+EM 612,Project Management of Complex Systems,M.Eng. Space Systems Engineering,-,Core,,3
+SYS 625,Fundamentals of Systems Engineering / Conception of CPS,M.Eng. Space Systems Engineering,-,Core Choice,Systems Engineering Certificate,3
+SYS 671,Fundamentals of Systems Engineering / Conception of CPS,M.Eng. Space Systems Engineering,-,Core Choice,,3
+SYS 632,Designing Space Missions & Systems / Human Spaceflight,M.Eng. Space Systems Engineering,-,Core Choice,Space Systems Engineering Certificate,3
+SYS 635,Designing Space Missions & Systems / Human Spaceflight,M.Eng. Space Systems Engineering,-,Core Choice,,3
+SYS 633,Mission & System Design Verification / Systems Integration,M.Eng. Space Systems Engineering,-,Core Choice,Space Systems Engineering Certificate,3
+SYS 605,Mission & System Design Verification / Systems Integration,M.Eng. Space Systems Engineering,-,Core Choice,,3
+SYS 637,Cost-Effective Space Mission Operations,M.Eng. Space Systems Engineering,-,Core,Space Systems Engineering Certificate,3
+SYS 800,Special Problems / Thesis in Systems Engineering,M.Eng. Space Systems Engineering,-,Project/Thesis,,3-6
+SYS 900,Special Problems / Thesis in Systems Engineering,M.Eng. Space Systems Engineering,-,Project/Thesis,,3-6
+SYS 611,Systems Modeling & Simulation / Decision & Risk Analysis,M.Eng. Systems Engineering,-,Core Choice,,3
+SYS 660,Systems Modeling & Simulation / Decision & Risk Analysis,M.Eng. Systems Engineering,-,Core Choice,Data Exploration & Visualization for Risk & Decision-Making,3
+EM 612,Project Management of Complex Systems,M.Eng. Systems Engineering,-,Core,,3
+SYS 625,Fundamentals of Systems Engineering / Conception of CPS,M.Eng. Systems Engineering,-,Core Choice,Systems Engineering Certificate,3
+SYS 671,Fundamentals of Systems Engineering / Conception of CPS,M.Eng. Systems Engineering,-,Core Choice,,3
+SYS 800,Special Problems / Thesis in Systems Engineering,M.Eng. Systems Engineering,-,Project/Thesis,,3-6
+SYS 900,Special Problems / Thesis in Systems Engineering,M.Eng. Systems Engineering,-,Project/Thesis,,3-6
+SYS 650,System Architecture and Design,M.Eng. Systems Engineering,Large-Scale CPS,Concentration,Systems Engineering Certificate,3
+SYS 605,Systems Integration,M.Eng. Systems Engineering,Large-Scale CPS,Concentration,,3
+SYS 640,System Supportability & Logistics / Design for Reliability,M.Eng. Systems Engineering,Large-Scale CPS,Concentration,Systems Supportability Engineering Certificate,3
+SYS 645,System Supportability & Logistics / Design for Reliability,M.Eng. Systems Engineering,Large-Scale CPS,Concentration,Systems Supportability Engineering Certificate,3
+SYS 672,"Design, Implementation, Sustainment of CPS",M.Eng. Systems Engineering,Embedded CPS,Concentration,Embedded/Cyber-Physical Systems Certificate,9
+SYS 673,"Design, Implementation, Sustainment of CPS",M.Eng. Systems Engineering,Embedded CPS,Concentration,Embedded/Cyber-Physical Systems Certificate,9
+SYS 674,"Design, Implementation, Sustainment of CPS",M.Eng. Systems Engineering,Embedded CPS,Concentration,Embedded/Cyber-Physical Systems Certificate,9
+SYS 632,"Design, Implementation, Sustainment for Space Systems",M.Eng. Systems Engineering,Space Systems,Concentration,Space Systems Engineering Certificate,9
+SYS 635,"Design, Implementation, Sustainment for Space Systems",M.Eng. Systems Engineering,Space Systems,Concentration,,9
+SYS 633,"Design, Implementation, Sustainment for Space Systems",M.Eng. Systems Engineering,Space Systems,Concentration,Space Systems Engineering Certificate,9
+SYS 605,"Design, Implementation, Sustainment for Space Systems",M.Eng. Systems Engineering,Space Systems,Concentration,,9
+SYS 637,"Design, Implementation, Sustainment for Space Systems",M.Eng. Systems Engineering,Space Systems,Concentration,Space Systems Engineering Certificate,9
+SSW 565,"Software Architecture, Testing, and DevOps",M.Eng. Systems Engineering,Software Systems,Concentration,,9
+SSW 567,"Software Architecture, Testing, and DevOps",M.Eng. Systems Engineering,Software Systems,Concentration,,9
+SSW 590,"Software Architecture, Testing, and DevOps",M.Eng. Systems Engineering,Software Systems,Concentration,,9

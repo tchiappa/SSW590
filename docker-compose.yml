@@ -1,15 +1,29 @@
 # DEVELOPMENT DOCKER COMPOSE
 services:
   mongo:
-    container_name: "database"
+    container_name: mongo
     image: mongo:8.2
     ports:
       - "27017:27017"
     volumes:
-      - mongo:/data/db
+      - mongo_volume:/data/db
+
+  mysql:
+    container_name: database
+    image: mysql:8
+    environment:
+      - MYSQL_ROOT_PASSWORD=Docker!23
+      - MYSQL_DATABASE=ssw590
+      - MYSQL_USER=express
+      - MYSQL_PASSWORD=Express!23
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql/scripts:/docker-entrypoint-initdb.d
+      - mysql_volume:/var/lib/mysql
 
   backend:
-    container_name: "backend"
+    container_name: backend
     build:
       context: ./backend
       dockerfile: Dockerfile
@@ -24,7 +38,7 @@ services:
       - mongo
 
   frontend:
-    container_name: "frontend"
+    container_name: frontend
     build:
       context: ./frontend
       dockerfile: Dockerfile
@@ -43,8 +57,9 @@ services:
     ports:
       - '4000:3000'
     volumes:
-      - grafana:/var/lib/grafana
+      - grafana_volume:/var/lib/grafana
 
 volumes:
-  mongo:
-  grafana:
+  mongo_volume:
+  mysql_volume:
+  grafana_volume:

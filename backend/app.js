@@ -1,10 +1,10 @@
 var express = require('express');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const db = require('./db/mongo');
+var db = require('./db/mysql');
 
-var defaultRouter = require('./routes/default');
-var apiRouter = require('./routes/api');
+var defaultRouter = require('./routes/default')(db);
+var apiRouter = require('./routes/api')(db);
 
 var app = express();
 
