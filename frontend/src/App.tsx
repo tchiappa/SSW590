@@ -1,6 +1,6 @@
-import {Navbar, NavbarItem, NavbarSection} from './components/navbar'
-import { Sidebar } from './components/sidebar'
-import { StackedLayout } from './components/stacked-layout'
+import {Navbar, NavbarItem, NavbarSection} from './ui/navbar'
+import { Sidebar } from './ui/sidebar'
+import { StackedLayout } from './ui/stacked-layout'
 
 export default function App({ children }:{ children: any; }) {
     return (
