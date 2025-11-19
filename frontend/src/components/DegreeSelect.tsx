@@ -4,7 +4,12 @@ import {Field, Label} from "../ui/fieldset.tsx";
 import {Select} from "../ui/select.tsx";
 import {API_BASE_URL} from "../config";
 
-export function DegreeSelect() {
+interface DegreeSelectProps {
+    value?: string;
+    onChange?: (value: string) => void;
+}
+
+export function DegreeSelect({ value, onChange }: DegreeSelectProps) {
     const [degrees, setDegrees] = useState<Program[]>([]);
     const [loading, setLoading] = useState(true);
 
@@ -23,7 +28,12 @@ export function DegreeSelect() {
 
     return <Field>
         <Label>Degree</Label>
-        <Select name="degree" disabled={loading}>
+        <Select 
+            name="degree" 
+            disabled={loading}
+            value={value}
+            onChange={(e) => onChange?.(e.target.value)}
+        >
             <option value="">None</option>
             {degrees.map(degree => (
                 <option key={degree.program_id} value={degree.program_id}>

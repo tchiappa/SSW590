@@ -4,7 +4,12 @@ import {Field, Label} from "../ui/fieldset.tsx";
 import {Select} from "../ui/select.tsx";
 import {API_BASE_URL} from "../config";
 
-export function CertificateSelect() {
+interface CertificateSelectProps {
+    value?: string;
+    onChange?: (value: string) => void;
+}
+
+export function CertificateSelect({ value, onChange }: CertificateSelectProps) {
     const [certificates, setCertificates] = useState<Program[]>([]);
     const [loading, setLoading] = useState(true);
 
@@ -23,7 +28,12 @@ export function CertificateSelect() {
 
     return <Field>
         <Label>Certificate</Label>
-        <Select name="certificate" disabled={loading}>
+        <Select 
+            name="certificate" 
+            disabled={loading}
+            value={value}
+            onChange={(e) => onChange?.(e.target.value)}
+        >
             <option value="">None</option>
             {certificates.map(certificate => (
                 <option key={certificate.program_id} value={certificate.program_id}>
