@@ -14,11 +14,11 @@ export default function App() {
     return (
         <StackedLayout
             navbar={<Navbar><NavbarSection>
-                <NavbarItem href="/">Home</NavbarItem>
+                <NavbarItem href="/">SSW590 - Group Project</NavbarItem>
             </NavbarSection></Navbar>}
             sidebar={<Sidebar></Sidebar>}
         >
-            <Heading>SSW590 - Group Project</Heading>
+            <Heading>Programs</Heading>
             <DegreeSelect value={selectedDegree} onChange={setSelectedDegree}/>
             <CertificateSelect value={selectedCertificate} onChange={setSelectedCertificate}/>
             <ClassList degreeId={selectedDegree} certificateId={selectedCertificate}/>

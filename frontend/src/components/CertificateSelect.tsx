@@ -26,20 +26,22 @@ export function CertificateSelect({ value, onChange }: CertificateSelectProps) {
             });
     }, []);
 
-    return <Field>
-        <Label>Certificate</Label>
-        <Select 
-            name="certificate" 
-            disabled={loading}
-            value={value}
-            onChange={(e) => onChange?.(e.target.value)}
-        >
-            <option value="">None</option>
-            {certificates.map(certificate => (
-                <option key={certificate.program_id} value={certificate.program_id}>
-                    {certificate.name}
-                </option>
-            ))}
-        </Select>
-    </Field>;
+    return <div className="mt-8">
+        <Field>
+            <Label>Certificate</Label>
+            <Select
+                name="certificate"
+                disabled={loading}
+                value={value}
+                onChange={(e) => onChange?.(e.target.value)}
+            >
+                <option value="">None</option>
+                {certificates.map(certificate => (
+                    <option key={certificate.program_id} value={certificate.program_id}>
+                        {certificate.name}
+                    </option>
+                ))}
+            </Select>
+        </Field>
+    </div>;
 }

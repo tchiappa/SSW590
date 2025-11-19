@@ -26,20 +26,22 @@ export function DegreeSelect({ value, onChange }: DegreeSelectProps) {
             });
     }, []);
 
-    return <Field>
-        <Label>Degree</Label>
-        <Select 
-            name="degree" 
-            disabled={loading}
-            value={value}
-            onChange={(e) => onChange?.(e.target.value)}
-        >
-            <option value="">None</option>
-            {degrees.map(degree => (
-                <option key={degree.program_id} value={degree.program_id}>
-                    {degree.name}
-                </option>
-            ))}
-        </Select>
-    </Field>;
+    return <div className="mt-8">
+        <Field>
+            <Label>Degree</Label>
+            <Select
+                name="degree"
+                disabled={loading}
+                value={value}
+                onChange={(e) => onChange?.(e.target.value)}
+            >
+                <option value="">None</option>
+                {degrees.map(degree => (
+                    <option key={degree.program_id} value={degree.program_id}>
+                        {degree.name}
+                    </option>
+                ))}
+            </Select>
+        </Field>
+    </div>;
 }
