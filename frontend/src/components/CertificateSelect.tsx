@@ -2,13 +2,14 @@ import {useEffect, useState} from "react";
 import {type Program} from "../types/Program";
 import {Field, Label} from "../ui/fieldset.tsx";
 import {Select} from "../ui/select.tsx";
+import {API_BASE_URL} from "../config";
 
 export function CertificateSelect() {
     const [certificates, setCertificates] = useState<Program[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch('http://localhost:3000/api/certificates')
+        fetch(`${API_BASE_URL}/api/certificates`)
             .then(response => response.json())
             .then(data => {
                 setCertificates(data);
