@@ -1,0 +1,28 @@
+# Optional: GitHub Action to notify on successful deployment
+# This workflow runs after merge to main to provide visibility
+name: Deployment Notification
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deployment Started
+        run: |
+          echo "🚀 Deployment to AWS EC2 staging environment has been triggered"
+          echo "📦 Commit: ${{ github.sha }}"
+          echo "👤 Author: ${{ github.actor }}"
+          echo "📝 Message: ${{ github.event.head_commit.message }}"
+          echo ""
+          echo "Monitor deployment progress:"
+          echo "- AWS CodePipeline: https://console.aws.amazon.com/codesuite/codepipeline/pipelines"
+          echo "- AWS CodeDeploy: https://console.aws.amazon.com/codesuite/codedeploy/applications"
+          echo ""
+          echo "Expected deployment time: 5-10 minutes"

@@ -21,6 +21,11 @@ async function initializeApp() {
         app.use(express.urlencoded({ extended: false }));
         app.use(cookieParser());
 
+        // Health check endpoint
+        app.get('/health', (req, res) => {
+            res.status(200).send('OK');
+        });
+
         app.use('/', defaultRouter);
         app.use('/api', apiRouter);
 

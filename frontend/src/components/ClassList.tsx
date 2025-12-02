@@ -28,7 +28,7 @@ export function ClassList({ degreeId, certificateId }: ClassListProps) {
         if (degreeId) params.append('degreeId', degreeId);
         if (certificateId) params.append('certificateId', certificateId);
 
-        fetch(`${API_BASE_URL}/api/class-list?${params.toString()}`)
+        fetch(`${API_BASE_URL}/class-list?${params.toString()}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Failed to fetch class list');
