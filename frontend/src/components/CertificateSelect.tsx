@@ -14,7 +14,7 @@ export function CertificateSelect({ value, onChange }: CertificateSelectProps) {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch(`${API_BASE_URL}/api/certificates`)
+        fetch(`${API_BASE_URL}/certificates`)
             .then(response => response.json())
             .then(data => {
                 setCertificates(data);

@@ -4,10 +4,12 @@ Class project for SSW590 - DevOps Principles and Practices.
 ## Table of Contents
 - [Prerequisites](#prerequisites)
 - [Getting Started](#getting-started)
+- [Docker Compose Configuration](#docker-compose-configuration)
 - [Managing Docker Containers](#managing-docker-containers)
 - [Accessing Services](#accessing-services)
 - [Running Commands in Containers](#running-commands-in-containers)
 - [Stopping the Application](#stopping-the-application)
+- [AWS Deployment](#aws-deployment)
 
 ## Prerequisites
 
@@ -66,14 +68,18 @@ cd SSW590
 
 Make sure Docker Desktop is running, then execute:
 
-**Mac:**
+**Development Mode (Mac/Windows):**
 ```bash
 docker compose up -d
 ```
 
-**Windows:**
-```powershell
-docker compose up -d
+This automatically uses:
+- `docker-compose.yml` (base configuration)
+- `docker-compose.override.yml` (development overrides - auto-loaded)
+
+**Production Mode (for deployment):**
+```bash
+docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
 ```
 
 The `-d` flag runs containers in detached mode (background). On first run, this will:
@@ -104,6 +110,41 @@ docker compose ps
 ```
 
 You should see all containers with status "Up".
+
+## Docker Compose Configuration
+
+This project uses a **base + override** pattern to eliminate duplication between development and production configurations:
+
+### File Structure
+
+| File | Purpose | Usage |
+|------|---------|-------|
+| `docker-compose.yml` | **Base configuration** - Shared settings for all environments | Always loaded |
+| `docker-compose.override.yml` | **Development overrides** - Dev-specific settings (volumes, ports) | Auto-loaded in development |
+| `docker-compose.prod.yml` | **Production overrides** - Prod-specific settings (restart policies, build targets) | Explicitly loaded with `-f` flag |
+
+### How It Works
+
+**Development (default):**
+```bash
+docker compose up -d
+```
+Automatically merges: `docker-compose.yml` + `docker-compose.override.yml`
+
+**Production:**
+```bash
+docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+```
+Explicitly merges: `docker-compose.yml` + `docker-compose.prod.yml`
+
+### Key Differences
+
+| Feature | Development | Production |
+|---------|-------------|------------|
+| **Volumes** | Source code mounted for hot-reload | No volumes (code baked into image) |
+| **Ports** | All ports exposed (3000, 5173, 3306, etc.) | Only frontend on port 80 |
+| **Restart Policy** | No restart policy | `restart: unless-stopped` |
+| **Dockerfiles** | `Dockerfile` (dev server) | `Dockerfile.prod` (optimized builds) |
 
 ## Managing Docker Containers
 
@@ -319,3 +360,37 @@ If you see an error about ports already being in use:
 1. For code changes, the volumes should auto-sync
 2. If changes don't appear, try: `docker compose restart <service-name>`
 3. For dependency changes, rebuild: `docker compose up -d --build <service-name>`
+
+## AWS Deployment
+
+This project includes AWS CodePipeline and CodeDeploy configuration for continuous deployment to EC2.
+
+### Quick Links
+- **[Deployment Guide](./AWS_DEPLOYMENT.md)** - Complete setup guide with quick start section
+- **[Quick Reference](./QUICK_REFERENCE.md)** - Commands and troubleshooting
+
+### Deployment Flow
+```
+GitHub (main) → CodePipeline → CodeDeploy → EC2 → Docker Compose
+```
+
+When code is merged to `main`:
+1. GitHub Actions runs tests (existing workflow)
+2. After tests pass and PR is merged, CodePipeline detects the change
+3. CodeDeploy deploys to EC2 staging environment
+4. Application is automatically updated with zero manual intervention
+
+### Key Files
+- `appspec.yml` - CodeDeploy configuration
+- `docker-compose.prod.yml` - Production Docker Compose configuration
+- `scripts/` - Deployment lifecycle scripts
+- `backend/Dockerfile.prod` - Production backend image
+- `frontend/Dockerfile.prod` - Production frontend image with Nginx
+
+### Prerequisites for AWS Deployment
+- AWS Account
+- EC2 instance with Docker installed
+- IAM roles configured (see deployment guides)
+- GitHub connection to AWS CodePipeline
+
+**Setup Instructions**: See [AWS_DEPLOYMENT.md](./AWS_DEPLOYMENT.md) for complete deployment guide.

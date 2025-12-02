@@ -1,0 +1,37 @@
+# DEVELOPMENT OVERRIDES
+# This file is automatically loaded by docker-compose in development
+# Use: docker-compose up
+services:
+  mysql:
+    ports:
+      - "3306:3306"
+
+  backend:
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+
+  frontend:
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+
+  grafana:
+    restart: unless-stopped
+
+  prometheus:
+    ports:
+      - "9090:9090"
+
+  cadvisor:
+    ports:
+      - "8080:8080"
+    restart: unless-stopped

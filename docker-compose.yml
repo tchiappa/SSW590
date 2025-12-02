@@ -1,13 +1,6 @@
-# DEVELOPMENT DOCKER COMPOSE
+# BASE DOCKER COMPOSE CONFIGURATION
+# Shared settings across all environments
 services:
-  mongo:
-    container_name: mongo
-    image: mongo:8.2
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongo_volume:/data/db
-
   mysql:
     container_name: database
     image: mysql:8
@@ -16,52 +9,39 @@ services:
       - MYSQL_DATABASE=ssw590
       - MYSQL_USER=express
       - MYSQL_PASSWORD=Express!23
-    ports:
-      - "3306:3306"
     volumes:
       - ./mysql/scripts:/docker-entrypoint-initdb.d
       - mysql_volume:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-pDocker!23"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   backend:
     container_name: backend
     build:
       context: ./backend
-      dockerfile: Dockerfile
-    environment:
-      - MONGO_URI=mongodb://mongo:27017/mydb
-    ports:
-      - "3000:3000"
-    volumes:
-      - ./backend:/app
-      - /app/node_modules
     depends_on:
-      - mongo
+      mysql:
+        condition: service_healthy
 
   frontend:
     container_name: frontend
     build:
       context: ./frontend
-      dockerfile: Dockerfile
-    ports:
-      - "5173:5173"
-    volumes:
-      - ./frontend:/app
-      - /app/node_modules
     depends_on:
       - backend
 
-  reporting:
+  grafana:
     container_name: reporting
     image: grafana/grafana
-    restart: unless-stopped
     ports:
       - '4000:3000'
     volumes:
       - grafana_volume:/var/lib/grafana
-    networks:
-      - monitoring
     environment:
-      - GF_SECURITY_ADMIN_PASSWORD=admin 
+      - GF_SECURITY_ADMIN_PASSWORD=admin
     depends_on:
       - prometheus
       
@@ -70,32 +50,18 @@ services:
     container_name: prometheus
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
-    ports:
-      - "9090:9090"
     command:
       - --config.file=/etc/prometheus/prometheus.yml
-    networks:
-      - monitoring
       
   cadvisor:
     image: gcr.io/cadvisor/cadvisor
     container_name: cadvisor
-    ports:
-      - "8080:8080"
     volumes:
       - /:/rootfs:ro
       - /var/run:/var/run:rw
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
-    restart: unless-stopped
-
-networks:
-  monitoring:
-    driver: bridge
 
 volumes:
-  mongo_volume:
   mysql_volume:
   grafana_volume:
-  prometheus_volume:
-  cadvisor_volume:

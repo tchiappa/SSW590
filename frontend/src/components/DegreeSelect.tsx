@@ -14,7 +14,7 @@ export function DegreeSelect({ value, onChange }: DegreeSelectProps) {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch(`${API_BASE_URL}/api/degrees`)
+        fetch(`${API_BASE_URL}/degrees`)
             .then(response => response.json())
             .then(data => {
                 setDegrees(data);
