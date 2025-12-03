@@ -31,7 +31,6 @@ docker-compose -f docker-compose.prod.yml up -d --build
 
 # Check health
 curl http://localhost:80/health
-curl http://localhost:3000/health
 ```
 
 ### Troubleshooting
@@ -60,9 +59,8 @@ chmod +x /home/ec2-user/app/scripts/*.sh
 - **EC2**: https://console.aws.amazon.com/ec2/
 - **CloudWatch Logs**: https://console.aws.amazon.com/cloudwatch/
 
-### Application (Replace with your EC2 IP)
+### Application
 - **Frontend**: http://YOUR-EC2-IP
-- **Backend API**: http://YOUR-EC2-IP:3000
 - **Grafana**: http://YOUR-EC2-IP:4000
 
 ## 📁 Key Files
@@ -74,7 +72,6 @@ chmod +x /home/ec2-user/app/scripts/*.sh
 | `scripts/*.sh` | Deployment lifecycle hooks |
 | `backend/Dockerfile.prod` | Backend production image |
 | `frontend/Dockerfile.prod` | Frontend production image |
-| `.env` | Environment variables (on EC2) |
 
 ## 🔐 IAM Roles
 
@@ -89,7 +86,7 @@ chmod +x /home/ec2-user/app/scripts/*.sh
 ```
 Name: SSW590-Staging
 Environment: Staging
-Application: SSW590
+Application: SSW590-App
 ```
 
 ## 🔒 Security Groups
@@ -98,7 +95,6 @@ Application: SSW590
 |------|---------|--------|
 | 22 | SSH | Your IP |
 | 80 | Frontend | 0.0.0.0/0 |
-| 3000 | Backend | 0.0.0.0/0 |
 | 4000 | Grafana | 0.0.0.0/0 |
 
 ## 🔄 Deployment Lifecycle
