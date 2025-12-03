@@ -6,8 +6,7 @@ echo "Running AfterInstall hook..."
 # Change to application directory
 cd /home/ec2-user/app
 
-# Ensure proper permissions
-chown -R ec2-user:ec2-user /home/ec2-user/app
-chmod +x /home/ec2-user/app/scripts/*.sh
+# Permissions are handled by appspec.yml
+# Add any post-installation tasks here if needed
 
 echo "AfterInstall hook completed successfully."
