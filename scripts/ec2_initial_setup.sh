@@ -35,10 +35,11 @@ ln -sf /usr/local/bin/docker-compose /usr/bin/docker-compose
 
 # Install CodeDeploy agent
 echo "Installing CodeDeploy agent..."
-yum install -y ruby wget
+yum install -y ruby
 
-# Detect region
-REGION=$(curl -s http://169.254.169.254/latest/meta-data/placement/region)
+# Detect region from availability zone
+AVAIL_ZONE=$(curl -s http://169.254.169.254/latest/meta-data/placement/availability-zone)
+REGION=${AVAIL_ZONE:0:-1}
 echo "Detected region: $REGION"
 
 cd /home/ec2-user
