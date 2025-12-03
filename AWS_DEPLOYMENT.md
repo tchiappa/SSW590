@@ -85,7 +85,7 @@ Security Group:
 Tags:
   - Name: SSW590-Staging
   - Environment: Staging
-  - Application: SSW590
+  - Application: SSW590-App
 ```
 
 ### 3. Setup CodeDeploy (5 min)
@@ -122,6 +122,9 @@ Source Stage:
 
 Build Stage:
   - Skip this stage
+  
+Test Stage:
+  - Skip this stage (for now)
 
 Deploy Stage:
   - Provider: AWS CodeDeploy
@@ -135,7 +138,6 @@ Deploy Stage:
 2. Monitor in **CodePipeline Console**
 3. Once complete, access:
    - Frontend: `http://<EC2-PUBLIC-IP>`
-   - Backend: `http://<EC2-PUBLIC-IP>:3000`
    - Grafana: `http://<EC2-PUBLIC-IP>:4000`
 
 **Verification Commands** (SSH into EC2):
@@ -145,7 +147,6 @@ ssh -i your-key.pem ec2-user@<EC2-PUBLIC-IP>
 # Check services
 docker ps
 curl http://localhost:80/health
-curl http://localhost:3000/health
 ```
 
 ---
@@ -199,37 +200,6 @@ sudo ./install auto
 sudo systemctl start codedeploy-agent
 sudo systemctl enable codedeploy-agent
 ```
-
-### Environment Variables
-
-Create `.env` file on EC2 (not in git):
-
-```bash
-ssh ec2-user@<EC2-IP>
-cd /home/ec2-user/app
-nano .env
-```
-
-Add:
-```bash
-# Database Configuration
-MYSQL_ROOT_PASSWORD=YourSecurePassword123!
-MYSQL_DATABASE=ssw590
-MYSQL_USER=express
-MYSQL_PASSWORD=YourExpressPassword123!
-
-# MongoDB Configuration
-MONGO_ROOT_USER=admin
-MONGO_ROOT_PASSWORD=YourMongoPassword123!
-
-# Grafana Configuration
-GRAFANA_PASSWORD=YourGrafanaPassword123!
-
-# Application Configuration
-NODE_ENV=production
-```
-
-**Important**: Change all passwords from defaults!
 
 ### GitHub Connection
 
@@ -317,20 +287,6 @@ docker-compose -f docker-compose.prod.yml down
 docker-compose -f docker-compose.prod.yml up -d --build
 ```
 
-### Health Checks
-
-Test endpoints:
-```bash
-# Frontend
-curl http://localhost:80/health
-
-# Backend
-curl http://localhost:3000/health
-
-# Grafana
-curl http://localhost:4000/api/health
-```
-
 ### System Resources
 
 ```bash
@@ -349,32 +305,7 @@ docker system prune -a
 
 ---
 
-## Next Steps
-
-### Immediate (Security)
-- [ ] Change all default passwords in `.env`
-- [ ] Restrict SSH to your IP only
-- [ ] Review IAM policies for least privilege
-- [ ] Enable MFA on AWS account
-
-### Short Term (Recommended)
-- [ ] Set up HTTPS with Application Load Balancer + ACM
-- [ ] Configure CloudWatch alarms:
-  - High CPU/Memory usage
-  - Failed deployments
-  - Application errors
-- [ ] Set up automated EBS snapshots
-- [ ] Configure log retention policies
-
-### Long Term (Optional)
-- [ ] Implement blue/green deployments for zero downtime
-- [ ] Set up Auto Scaling Group for high availability
-- [ ] Add CDN (CloudFront) for static assets
-- [ ] Move secrets to AWS Secrets Manager
-- [ ] Configure WAF rules
-- [ ] Set up multiple environments (staging, production)
-
-### Testing Production Config Locally
+## Testing Production Config Locally
 
 Before deploying to AWS, test locally:
 
@@ -387,7 +318,6 @@ docker-compose -f docker-compose.prod.yml ps
 
 # Test endpoints
 curl http://localhost:80/health
-curl http://localhost:3000/health
 
 # View logs
 docker-compose -f docker-compose.prod.yml logs -f
