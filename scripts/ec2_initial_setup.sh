@@ -33,6 +33,13 @@ curl -L "https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VE
 chmod +x /usr/local/bin/docker-compose
 ln -sf /usr/local/bin/docker-compose /usr/bin/docker-compose
 
+# Install Docker Buildx
+echo "Installing Docker Buildx..."
+BUILDX_VERSION=$(curl -s https://api.github.com/repos/docker/buildx/releases/latest | grep 'tag_name' | cut -d\" -f4)
+mkdir -p /usr/local/lib/docker/cli-plugins
+curl -L "https://github.com/docker/buildx/releases/download/${BUILDX_VERSION}/buildx-${BUILDX_VERSION}.linux-amd64" -o /usr/local/lib/docker/cli-plugins/docker-buildx
+chmod +x /usr/local/lib/docker/cli-plugins/docker-buildx
+
 # Install CodeDeploy agent
 echo "Installing CodeDeploy agent..."
 yum install -y ruby
