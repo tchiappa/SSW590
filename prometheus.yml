@@ -15,5 +15,6 @@ scrape_configs:
 
   # Scrape our app
   - job_name: "backend"
+    metrics_path: "/metrics"
     static_configs:
       - targets: ["backend:3000"]
