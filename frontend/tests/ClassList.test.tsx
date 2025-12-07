@@ -19,7 +19,7 @@ describe('ClassList Component', () => {
   });
 
   test('should show loading state', async () => {
-    (global.fetch as any).mockImplementation(() => 
+    (global.fetch as ReturnType<typeof vi.fn>).mockImplementation(() => 
       new Promise(() => {}) // Never resolves
     );
 
@@ -45,7 +45,7 @@ describe('ClassList Component', () => {
       }
     ];
 
-    (global.fetch as any).mockResolvedValueOnce({
+    (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
       ok: true,
       json: async () => mockCourses
     });
@@ -75,7 +75,7 @@ describe('ClassList Component', () => {
       }
     ];
 
-    (global.fetch as any).mockResolvedValueOnce({
+    (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
       ok: true,
       json: async () => mockCourses
     });
@@ -92,7 +92,7 @@ describe('ClassList Component', () => {
   });
 
   test('should show error message on fetch failure', async () => {
-    (global.fetch as any).mockRejectedValueOnce(new Error('Network error'));
+    (global.fetch as ReturnType<typeof vi.fn>).mockRejectedValueOnce(new Error('Network error'));
 
     render(<ClassList degreeId="1" certificateId="" />);
 
@@ -102,7 +102,7 @@ describe('ClassList Component', () => {
   });
 
   test('should show message when no courses found', async () => {
-    (global.fetch as any).mockResolvedValueOnce({
+    (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
       ok: true,
       json: async () => []
     });
@@ -132,7 +132,7 @@ describe('ClassList Component', () => {
       }
     ];
 
-    (global.fetch as any).mockResolvedValueOnce({
+    (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
       ok: true,
       json: async () => mockCourses
     });
@@ -145,7 +145,7 @@ describe('ClassList Component', () => {
   });
 
   test('should handle non-ok response', async () => {
-    (global.fetch as any).mockResolvedValueOnce({
+    (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
       ok: false,
       status: 500
     });

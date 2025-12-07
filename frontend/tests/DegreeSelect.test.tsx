@@ -15,7 +15,7 @@ describe('DegreeSelect Component', () => {
   });
 
   test('should render with loading state initially', () => {
-    (global.fetch as any).mockImplementation(() => 
+    (global.fetch as ReturnType<typeof vi.fn>).mockImplementation(() => 
       new Promise(() => {}) // Never resolves
     );
 
@@ -31,7 +31,7 @@ describe('DegreeSelect Component', () => {
       { program_id: 2, name: 'Software Engineering', type: 'DEGREE', parent_program_id: null }
     ];
 
-    (global.fetch as any).mockResolvedValueOnce({
+    (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
       ok: true,
       json: async () => mockDegrees
     });
@@ -51,7 +51,7 @@ describe('DegreeSelect Component', () => {
       { program_id: 1, name: 'Computer Science', type: 'DEGREE', parent_program_id: null }
     ];
 
-    (global.fetch as any).mockResolvedValueOnce({
+    (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
       ok: true,
       json: async () => mockDegrees
     });
@@ -72,7 +72,7 @@ describe('DegreeSelect Component', () => {
   test('should handle fetch errors gracefully', async () => {
     const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
     
-    (global.fetch as any).mockRejectedValueOnce(new Error('Network error'));
+    (global.fetch as ReturnType<typeof vi.fn>).mockRejectedValueOnce(new Error('Network error'));
 
     render(<DegreeSelect />);
 
@@ -86,7 +86,7 @@ describe('DegreeSelect Component', () => {
   });
 
   test('should display "None" option', async () => {
-    (global.fetch as any).mockResolvedValueOnce({
+    (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
       ok: true,
       json: async () => []
     });
@@ -103,7 +103,7 @@ describe('DegreeSelect Component', () => {
       { program_id: 1, name: 'Computer Science', type: 'DEGREE', parent_program_id: null }
     ];
 
-    (global.fetch as any).mockResolvedValueOnce({
+    (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
       ok: true,
       json: async () => mockDegrees
     });
