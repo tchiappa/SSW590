@@ -2,11 +2,6 @@ import { defineConfig } from 'vitest/config'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
-// Polyfill for Node.js 18 compatibility with jsdom
-if (typeof global.structuredClone === 'undefined') {
-  global.structuredClone = (val: unknown) => JSON.parse(JSON.stringify(val));
-}
-
 export default defineConfig({
   plugins: [
     react({
@@ -19,6 +14,7 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
+    globalSetup: './tests/globalSetup.ts',
     setupFiles: './tests/setup.ts',
   },
 })
